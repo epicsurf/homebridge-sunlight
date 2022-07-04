@@ -128,7 +128,7 @@ class SunlightAccessory {
       let sunState = this.returnSunFromCache();
       let cloudState = this.returnCloudinessFromCache();
       if (platformConfig.debugLog) log(`Sun state: ${sunState}%, Cloud state: ${cloudState}%`);
-      newState = sunState > 10 && sunState <90 && cloudState <= 25;
+      newState = sunState > 5 && sunState <90 && cloudState <= 25;
     }
 
     return newState;
