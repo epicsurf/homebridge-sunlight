@@ -52,6 +52,29 @@
                             "description": "Right side of sky section within which the sensor should activate",
                             "required": true
                         }
+                    },
+                    "type": "object",
+                    "title": "Sun Altitude",
+                    "required": false,
+                    "properties": {
+                        "name": {
+                            "type": "string",
+                            "title": "Sensor Name",
+                            "description": "Homekit display name of the sensor",
+                            "required": true
+                        },
+                        "lowerAltitude": {
+                            "type": "number",
+                            "title": "Lower Altitude",
+                            "description": "Degrees above the horizon within which the sensor should activate",
+                            "required": false
+                        },
+                        "upperThreshold": {
+                            "type": "number",
+                            "title": "Upper Altitude",
+                            "description": "Degrees above the horizon within which the sensor should activate",
+                            "required": false
+                        }
                     }
                 }
             },
