@@ -1,89 +1,77 @@
 {
-    "pluginAlias": "Sunlight",
-    "pluginType": "platform",
-    "singular": true,
-    "headerDisplay": "This plugin provides contact sensors to automate sun protection. Sensors are opened (breached) when the sun is in a given section of the sky (azimuth) and optionally if an [OpenWeather API key](https://openweathermap.org/api) is provided when the sun is above the horizon and the sky is not overcast.",
-    "footerDisplay": "For help or in case of issues please visit the [GitHub repository](https://github.com/Krillle/homebridge-sunlight/issues). Based on [homebridge-sunsensors](https://github.com/mfkrause/homebridge-sunsensors).",
-    "schema": {
-        "type": "object",
-        "properties": {
-            "lat": {
-                "type": "number",
-                "title": "Latitude",
-                "required": true
+  "pluginAlias": "Sunlight",
+  "pluginType": "platform",
+  "singular": true,
+  "headerDisplay": "This plugin provides contact sensors to automate sun protection. Sensors are opened (breached) when the sun is in a given section of the sky (azimuth) and optionally if an [OpenWeather API key](https://openweathermap.org/api) is provided when the sun is above the horizon and the sky is not overcast.",
+  "footerDisplay": "For help or in case of issues please visit the [GitHub repository](https://github.com/Krillle/homebridge-sunlight/issues). Based on [homebridge-sunsensors](https://github.com/mfkrause/homebridge-sunsensors).",
+  "schema": {
+    "type": "object",
+    "properties": {
+      "lat": {
+        "type": "number",
+        "title": "Latitude",
+        "required": true
+      },
+      "long": {
+        "type": "number",
+        "title": "Longitude",
+        "required": true
+      },
+      "apikey": {
+        "type": "string",
+        "title": "OpenWeather API Key",
+        "description": "If API key is provided, sunhsine is reported only during daylight times when sky is not overcast",
+        "required": false
+      },
+      "sensors": {
+        "type": "array",
+        "title": "Sensors",
+        "required": true,
+        "description": "Define contact sensors for one or more sections of the sky, e.g. for windows looking to different directions. Direction is specified in degrees of compass: 0° North, 90° East, 180° South, 270° West. To define overlaps you can use values between -360° and 0° as well as 360° and 720°.",
+        "default": [],
+        "items": {
+          "type": "object",
+          "title": "Sun Position",
+          "required": true,
+          "properties": {
+            "name": {
+              "type": "string",
+              "title": "Sensor Name",
+              "description": "Homekit display name of the sensor",
+              "required": true
             },
-            "long": {
-                "type": "number",
-                "title": "Longitude",
-                "required": true
+            "lowerThreshold": {
+              "type": "number",
+              "title": "Lower Threshold",
+              "description": "Left side of sky section within which the sensor should activate",
+              "required": true
             },
-            "apikey": {
-                "type": "string",
-                "title": "OpenWeather API Key",
-                "description": "If API key is provided, sunhsine is reported only during daylight times when sky is not overcast",
-                "required": false
+            "upperThreshold": {
+              "type": "number",
+              "title": "Upper Threshold",
+              "description": "Right side of sky section within which the sensor should activate",
+              "required": true
             },
-            "sensors": {
-                "type": "array",
-                "title": "Sensors",
-                "required": true,
-                "description": "Define contact sensors for one or more sections of the sky, e.g. for windows looking to different directions. Direction is specified in degrees of compass: 0° North, 90° East, 180° South, 270° West. To define overlaps you can use values between -360° and 0° as well as 360° and 720°.",
-                "default": [],
-                "items": {
-                    "type": "object",
-                    "title": "Sun Position",
-                    "required": true,
-                    "properties": {
-                        "name": {
-                            "type": "string",
-                            "title": "Sensor Name",
-                            "description": "Homekit display name of the sensor",
-                            "required": true
-                        },
-                        "lowerThreshold": {
-                            "type": "number",
-                            "title": "Lower Threshold",
-                            "description": "Left side of sky section within which the sensor should activate",
-                            "required": true
-                        },
-                        "upperThreshold": {
-                            "type": "number",
-                            "title": "Upper Threshold",
-                            "description": "Right side of sky section within which the sensor should activate",
-                            "required": true
-                        }
-                    },
-                    "type": "object",
-                    "title": "Sun Altitude",
-                    "required": false,
-                    "properties": {
-                        "name": {
-                            "type": "string",
-                            "title": "Sensor Name",
-                            "description": "Homekit display name of the sensor",
-                            "required": true
-                        },
-                        "lowerAltitude": {
-                            "type": "number",
-                            "title": "Lower Altitude",
-                            "description": "Degrees above the horizon within which the sensor should activate",
-                            "required": false
-                        },
-                        "upperThreshold": {
-                            "type": "number",
-                            "title": "Upper Altitude",
-                            "description": "Degrees above the horizon within which the sensor should activate",
-                            "required": false
-                        }
-                    }
-                }
+            "lowerAltitude": {
+              "type": "number",
+              "title": "Lower Altitude",
+              "description": "Degrees above the horizon within which the sensor should activate",
+              "required": false
             },
-            "debugLog": {
-                "type": "boolean",
-                "title": "Debug logging enabled",
-                "required": false,
-                "default": false
+            "upperAltitude": {
+              "type": "number",
+              "title": "Upper Altitude",
+              "description": "Degrees above the horizon within which the sensor should activate",
+              "required": false
             }
+          }
+        },
+        "debugLog": {
+          "type": "boolean",
+          "title": "Debug logging enabled",
+          "required": false,
+          "default": false
         }
+      }
     }
-}
+  }
