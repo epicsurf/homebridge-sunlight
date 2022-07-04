@@ -81,7 +81,7 @@ class SunlightAccessory {
   updateState() {
     const { config, platformConfig, log } = this;
     const { lat, long, apikey } = platformConfig;
-    const { lowerThreshold, upperThreshold } = config;
+    const { lowerThreshold, upperThreshold, lowerAltitude, upperAltitude} = config;
     const threshold = [lowerThreshold, upperThreshold];
 
     if (!lat || !long || typeof lat !== 'number' || typeof long !== 'number') {
@@ -127,8 +127,11 @@ class SunlightAccessory {
     if (newState && apikey) {
       let sunState = this.returnSunFromCache();
       let cloudState = this.returnCloudinessFromCache();
+      let lowerAltitude = lowerAltitude || 10;
+      let upperAltitude = upperAltitude || 90;
+      
       if (platformConfig.debugLog) log(`Sun state: ${sunState}%, Cloud state: ${cloudState}%`);
-      newState = sunState > 5 && sunState <90 && cloudState <= 25;
+      newState = sunState > lowerAltitude && sunState < upperAltitude && cloudState <= 25;
     }
 
     return newState;
