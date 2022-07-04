@@ -80,7 +80,7 @@ class SunlightPlatform {
 
                 // this.accessories[index] = this.sensors[accessory.displayName].initializeAccessory();
             });
-            homebridge.updatePlatformAccessories('homebridge-sunlight', 'Sunlight', this.accessories);
+            homebridge.updatePlatformAccessories('homebridge-sunlight', 'SunlightTest', this.accessories);
         }
         const configuredAccessories = tempAccessories;
         this.accessories = [];
