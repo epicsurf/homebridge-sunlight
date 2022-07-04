@@ -129,7 +129,7 @@ class SunlightAccessory {
       let cloudState = this.returnCloudinessFromCache();
       let lowerAltitude = lowerAltitude || 10;
       let upperAltitude = upperAltitude || 90;
-      
+
       if (platformConfig.debugLog) log(`Sun state: ${sunState}%, Cloud state: ${cloudState}%`);
       newState = sunState > lowerAltitude && sunState < upperAltitude && cloudState <= 25;
     }
